@@ -14,14 +14,15 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, 
                         source: :follower
 
-  validates :name,  presence: true, 
+  validates :name,  presence: true,
                       length: { maximum: 50}
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true,
-                      length: { maximum: 255 },
+  # 先頭(A)が英数で始まり、@の後はexample.comのみ許可する。ユーザー名部分は-と.は許可する。
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@example\.com\z/
+  validates :email, presence: true
+                      length: { maximum: 200 },
                       format: { with: VALID_EMAIL_REGEX },
                   uniqueness: { case_sensitive: false }
-  
+
   has_secure_password
   validates :password, presence: true,
                          length: { minimum: 6},
