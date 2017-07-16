@@ -38,7 +38,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.18.4'
+  gem 'pg'
 end
 
 # Windows環境ではtzinfo-dataというgemを含める必要があります
