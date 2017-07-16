@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-    @users = User.order(:name).paginate(page: params[:page])
+    # @users = User.order(:name).paginate(page: params[:page])
+    @users = User.order(:name)
   end
 
   def show
