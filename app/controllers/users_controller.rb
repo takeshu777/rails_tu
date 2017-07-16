@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = User.find_by_sql(["SELECT * FROM users WHERE id = ?", params[:id]]).first
     @microposts = @user.microposts.paginate(page: params[:page])
     #debugger
   end
